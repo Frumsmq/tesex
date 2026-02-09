@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE timeTable [
+    <!ELEMENT timeTable (complexes, lessons)>
+
+    <!ELEMENT complexes (complex+)>
+    <!ELEMENT lessons (lesson+)>
+
+    <!ELEMENT complex (name, address)>
+    <!ATTLIST complex
+        code ID #REQUIRED
+    >
+
+    <!ELEMENT lesson (date, time)>
+    <!ATTLIST lesson
+        no CDATA #REQUIRED
+        complex IDREF #REQUIRED
+    >
+
+    <!ELEMENT name (#PCDATA)>
+    <!ELEMENT address (#PCDATA)>
+    <!ELEMENT date (#PCDATA)>
+    <!ELEMENT time (#PCDATA)>
+]>
+
+<timeTable>
+    <complexes>
+        <complex code="C1">
+            <name>Главный корпус</name>
+            <address>ул. Ленина, 10</address>
+        </complex>
+
+        <complex code="C2">
+            <name>Спортивный комплекс</name>
+            <address>пр. Мира, 25</address>
+        </complex>
+    </complexes>
+
+    <lessons>
+        <lesson no="1" complex="C1">
+            <date>2026-02-10</date>
+            <time>10:00</time>
+        </lesson>
+
+        <lesson no="2" complex="C2">
+            <date>2026-02-11</date>
+            <time>12:00</time>
+        </lesson>
+    </lessons>
+</timeTable>

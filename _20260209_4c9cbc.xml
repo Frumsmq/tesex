@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
+
+    <xsl:template match="/">
+        <items>
+            <xsl:apply-templates select="//div[@class='comment']"/>
+        </items>
+    </xsl:template>
+
+    <xsl:template match="div[@class='comment']">
+        <xsl:variable name="id" select="position()"/>
+        <xsl:variable name="parentid">
+            <xsl:choose>
+                <xsl:when test="@id = 1">0</xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="@id - 1"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <item id="{$id}" parentid="{$parentid}" author="{span[@class='author']}">
+            <xsl:value-of select="p[@class='text']"/>
+        </item>
+    </xsl:template>
+
+</xsl:stylesheet>
